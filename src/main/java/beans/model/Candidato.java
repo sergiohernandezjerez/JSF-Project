@@ -13,7 +13,16 @@ import org.apache.logging.log4j.Logger;
 public class Candidato {
     
     Logger log = LogManager.getRootLogger();
-    private String nombre="Introduce tu nombre";
+    private String nombre;
+    private String apellido;
+    private String salarioDeseado;
+
+    public Candidato() {
+        log.info("Creando el objeto Candidato");
+        this.setNombre("Introduce tu nombre");
+    }
+    
+    
 
     public String getNombre() {
         return nombre;
@@ -23,6 +32,27 @@ public class Candidato {
         this.nombre = nombre;
         log.info("Modificando la propiedad de nombre:  " + this.nombre);
     }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+        log.info("Modificando la propiedad del apellido " + apellido);
+    }
+
+    public String getSalarioDeseado() {
+        return salarioDeseado;
+    }
+
+    public void setSalarioDeseado(String salarioDeseado) {
+        this.salarioDeseado = salarioDeseado;
+        log.info("Modificando la propiedad de sueldo deseado " + salarioDeseado);
+    }
+    
+    
+    
     
     
     
