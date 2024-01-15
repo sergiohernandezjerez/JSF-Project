@@ -23,9 +23,18 @@
                     <td><h:outputLabel for="salarioDeseado" value="Salario deseado:"></h:outputLabel></td>
                     <td><h:inputText id="salarioDeseado" required="true" value="#{candidato.salarioDeseado}">
                         <f:validateLongRange minimum="500" maximum="5000"/>
+                        <f:convertNumber></f:convertNumber>
                         </h:inputText>
                     </td>
                     <td><h:message for="salarioDeseado"></h:message></td>
+                </tr>
+                <tr>
+                    <td><h:outputLabel for="fechaNacimiento" value="Fecha de Nacimiento:"></h:outputLabel></td>
+                    <td><h:inputText id="fechaNacimiento" required="true" value="#{candidato.fechaNacimiento}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>  
+                        </h:inputText>
+                    </td>
+                    
                 </tr>
                 
             </table>
