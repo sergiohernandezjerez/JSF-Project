@@ -1,5 +1,6 @@
 package beans.backing;
 
+import bean.helper.ColoniaHelper;
 import beans.model.Candidato;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -17,72 +18,78 @@ import org.apache.logging.log4j.Logger;
 @RequestScoped
 public class VacanteForm {
     
-    Logger log = LogManager.getRootLogger();
     @Inject
     private Candidato candidato;
-    private Boolean comentarioEnviado = false;
+
+    private boolean comentarioEnviado;
+
+    @Inject
+    private ColoniaHelper coloniaHelper;
+
+    Logger log = LogManager.getRootLogger();
 
     public VacanteForm() {
         log.info("Creando el objeto VacanteForm");
     }
-    
-    
-    
-    public void setCandidato(Candidato candidato){
+
+    public void setCandidato(Candidato candidato) {
         this.candidato = candidato;
     }
-    
-    public String enviar(){
-        if(this.candidato.getNombre().equals("Juan")) {
-            if(this.candidato.getApellido().equals("Perez")){
+
+    public String enviar() {
+        if (this.candidato.getNombre().equals("Juan")) {
+            if (this.candidato.getApellido().equals("Perez")) {
                 String msg = "Gracias, pero Juan Perez ya trabaja con nosotros.";
                 FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg);
                 FacesContext facesContext = FacesContext.getCurrentInstance();
                 String componentId = null;//este es un mensaje global
-                facesContext.addMessage( componentId, facesMessage);
+                facesContext.addMessage(componentId, facesMessage);
                 return "index";
             }
             log.info("Entrando al caso de exito");
             return "exito";
-        }else{
+        } else {
             log.info("Entrando al caso de fallo");
             return "fallo";
         }
     }
-    
-    public void codigoPostalListener(ValueChangeEvent valueChangeEvent){
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        UIViewRoot uIViewRoot = facesContext.getViewRoot();
-        String nuevoCodigoPostal = (String) valueChangeEvent.getNewValue();
-        if("08110".equals(nuevoCodigoPostal)){
-            UIInput coloniaInputText = (UIInput) uIViewRoot.findComponent("vacanteForm:colonia");
-            String nuevaColonia = "Montcada i Reixac";
-            coloniaInputText.setValue(nuevaColonia);
-            coloniaInputText.setSubmittedValue(nuevaColonia);
-            
-            UIInput ciudadInputText = (UIInput) uIViewRoot.findComponent("vacanteForm:ciudad");
-            String nuevaCiudad = "Barcelona";
-            ciudadInputText.setValue(nuevaCiudad);
-            ciudadInputText.setSubmittedValue(nuevaCiudad);
-        }
-    } 
 
-    
-    
-    public void ocultarComentario(ActionEvent actionEvent){
+    public void codigoPostalListener(ValueChangeEvent valueChangeEvent) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        UIViewRoot uiViewRoot = facesContext.getViewRoot();
+        int nuevoCodigoPostal = ((Long) valueChangeEvent.getNewValue()).intValue();
+        UIInput coloniaIdInputText = (UIInput) uiViewRoot.findComponent("vacanteForm:coloniaId");
+        int coloniaId = this.coloniaHelper.getColoniaIdPorCP(nuevoCodigoPostal);
+        coloniaIdInputText.setValue(coloniaId);
+        coloniaIdInputText.setSubmittedValue(coloniaId);
+
+        UIInput ciudadInputText = (UIInput) uiViewRoot.findComponent("vacanteForm:ciudad");
+        String nuevaCiudad = "Ciudad de Mexico";
+        ciudadInputText.setValue(nuevaCiudad);
+        ciudadInputText.setSubmittedValue(nuevaCiudad);
+
+        facesContext.renderResponse();
+
+    }
+
+    public void ocultarComentario(ActionEvent actionEvent) {
         this.comentarioEnviado = !this.comentarioEnviado;
     }
-    
-    
-    public Boolean getComentarioEnviado() {
+
+    public boolean isComentarioEnviado() {
         return comentarioEnviado;
     }
 
-    public void setComentarioEnviado(Boolean comentarioEnviado) {
+    public void setComentarioEnviado(boolean comentarioEnviado) {
         this.comentarioEnviado = comentarioEnviado;
     }
-    
-    
-    
+
+    public ColoniaHelper getColoniaHelper() {
+        return coloniaHelper;
+    }
+
+    public void setColoniaHelper(ColoniaHelper coloniaHelper) {
+        this.coloniaHelper = coloniaHelper;
+    }
     
 }
