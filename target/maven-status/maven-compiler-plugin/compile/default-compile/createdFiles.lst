@@ -1,4 +1,6 @@
-beans\backing\VacanteForm.class
-beans\configuracion\ConfigurationJSF.class
+beans\model\Colonia.class
 beans\model\Candidato.class
 beans\lifecycle\DebuggerListener.class
+beans\backing\VacanteForm.class
+beans\configuracion\ConfigurationJSF.class
+bean\helper\ColoniaHelper.class
