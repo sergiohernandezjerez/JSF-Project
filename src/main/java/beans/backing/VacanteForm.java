@@ -6,6 +6,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.component.UIInput;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -19,6 +20,7 @@ public class VacanteForm {
     Logger log = LogManager.getRootLogger();
     @Inject
     private Candidato candidato;
+    private Boolean comentarioEnviado = false;
 
     public VacanteForm() {
         log.info("Creando el objeto VacanteForm");
@@ -64,5 +66,23 @@ public class VacanteForm {
             ciudadInputText.setSubmittedValue(nuevaCiudad);
         }
     } 
+
+    
+    
+    public void ocultarComentario(ActionEvent actionEvent){
+        this.comentarioEnviado = !this.comentarioEnviado;
+    }
+    
+    
+    public Boolean getComentarioEnviado() {
+        return comentarioEnviado;
+    }
+
+    public void setComentarioEnviado(Boolean comentarioEnviado) {
+        this.comentarioEnviado = comentarioEnviado;
+    }
+    
+    
+    
     
 }

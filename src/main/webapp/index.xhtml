@@ -52,8 +52,28 @@
                     <td><h:inputText id="ciudad" required="true" value="#{candidato.ciudad}"></h:inputText></td>
                     <td><h:message for="ciudad"></h:message></td>
                 </tr>
+                <!-- boton/etiqueta para mostrar u ocultar el panelgroup de comentario -->
+                <tr>
+                    <td>
+                        <h:commandLink actionListener="#{vacanteForm.ocultarComentario}" immediate="true" rendered="#{!vacanteForm.comentarioEnviado}" 
+                                       value="#{msgs['vacanteForm.mostrar']}" />
+                        <h:commandLink actionListener="#{vacanteForm.ocultarComentario}" immediate="true" rendered="#{vacanteForm.comentarioEnviado}" 
+                                       value="#{msgs['vacanteForm.ocultar']}" />
+                    </td>
+                </tr>
                 
             </table>
+            <h:panelGroup rendered="#{vacanteForm.comentarioEnviado}">
+                <table>
+                    <tr>
+                        <td><h:outputLabel for="comentario" value="#{msgs['vacanteForm.comentario']}"/> </td>
+                    </tr>
+                    <tr>
+                        <td><h:inputTextarea id="comentario" cols="50" rows="10" value="#{candidato.comentario}"></h:inputTextarea> </td>
+                    </tr>
+                </table>
+            
+            </h:panelGroup>
             <h:commandButton action ="#{vacanteForm.enviar}" value="#{msgs['vacanteForm.enviar']}"/>
         </h:form>
     </body>
