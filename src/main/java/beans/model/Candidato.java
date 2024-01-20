@@ -19,9 +19,9 @@ public class Candidato {
     private int salarioDeseado;
     private Date fechaNacimiento;
     private String codigoPostal;
-    private String colonia;
     private String ciudad;
     private String comentario;
+    private int coloniaId;
 
     public Candidato() {
         log.info("Creando el objeto Candidato");
@@ -72,14 +72,6 @@ public class Candidato {
         this.codigoPostal = codigoPostal;
     }
 
-    public String getColonia() {
-        return colonia;
-    }
-
-    public void setColonia(String colonia) {
-        this.colonia = colonia;
-    }
-
     public String getCiudad() {
         return ciudad;
     }
@@ -95,10 +87,14 @@ public class Candidato {
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
+
+    public int getColoniaId() {
+        return coloniaId;
+    }
+
+    public void setColoniaId(int coloniaId) {
+        this.coloniaId = coloniaId;
+    }
     
-    
-    
-    
-    
-    
+       
 }
