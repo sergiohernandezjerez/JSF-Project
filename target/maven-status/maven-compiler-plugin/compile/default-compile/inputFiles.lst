@@ -1,4 +1,6 @@
 E:\java\JSF\src\main\java\beans\model\Candidato.java
 E:\java\JSF\src\main\java\beans\backing\VacanteForm.java
 E:\java\JSF\src\main\java\beans\configuracion\ConfigurationJSF.java
+E:\java\JSF\src\main\java\beans\model\Colonia.java
+E:\java\JSF\src\main\java\bean\helper\ColoniaHelper.java
 E:\java\JSF\src\main\java\beans\lifecycle\DebuggerListener.java
