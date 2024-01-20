@@ -26,8 +26,6 @@ public class VacanteForm {
         log.info("Creando el objeto VacanteForm");
     }
     
-    
-    
     public void setCandidato(Candidato candidato){
         this.candidato = candidato;
     }
@@ -55,10 +53,10 @@ public class VacanteForm {
         UIViewRoot uIViewRoot = facesContext.getViewRoot();
         String nuevoCodigoPostal = (String) valueChangeEvent.getNewValue();
         if("08110".equals(nuevoCodigoPostal)){
-            UIInput coloniaInputText = (UIInput) uIViewRoot.findComponent("vacanteForm:colonia");
-            String nuevaColonia = "Montcada i Reixac";
-            coloniaInputText.setValue(nuevaColonia);
-            coloniaInputText.setSubmittedValue(nuevaColonia);
+            UIInput coloniaIdInputText = (UIInput) uIViewRoot.findComponent("vacanteForm:coloniaId");
+            String coloniaId = "1";
+            coloniaIdInputText.setValue(coloniaId);
+            coloniaIdInputText.setSubmittedValue(coloniaId);
             
             UIInput ciudadInputText = (UIInput) uIViewRoot.findComponent("vacanteForm:ciudad");
             String nuevaCiudad = "Barcelona";
